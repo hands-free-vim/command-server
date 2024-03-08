@@ -1,5 +1,5 @@
 // import { Minimatch } from "minimatch";
-import * as vscode from "vscode";
+// import * as vscode from "vscode";
 
 import { any } from "./regex";
 import { Request } from "./types";
@@ -15,7 +15,7 @@ export default class CommandRunner {
     this.runCommand = this.runCommand.bind(this);
 
     this.reloadConfiguration();
-    vscode.workspace.onDidChangeConfiguration(this.reloadConfiguration);
+    // vscode.workspace.onDidChangeConfiguration(this.reloadConfiguration);
   }
 
   reloadConfiguration() {
@@ -66,13 +66,14 @@ export default class CommandRunner {
     const warnings = [];
 
     try {
-      if (!vscode.window.state.focused) {
-        if (this.backgroundWindowProtection) {
-          throw new Error("This editor is not active");
-        } else {
-          warnings.push("This editor is not active");
-        }
-      }
+      // if (!vscode.window.state.focused) {
+      //   if (this.backgroundWindowProtection) {
+      //     throw new Error("This editor is not active");
+      //   } else {
+      //     warnings.push("This editor is not active");
+      //   }
+      // }
+      warnings.push("Neovim not implemented yet");
 
       if (!commandId.match(this.allowRegex)) {
         throw new Error("Command not in allowList");
@@ -82,15 +83,15 @@ export default class CommandRunner {
         throw new Error("Command in denyList");
       }
 
-      const commandPromise = vscode.commands.executeCommand(commandId, ...args);
+      // const commandPromise = vscode.commands.executeCommand(commandId, ...args);
 
       let commandReturnValue = null;
 
-      if (returnCommandOutput) {
-        commandReturnValue = await commandPromise;
-      } else if (waitForFinish) {
-        await commandPromise;
-      }
+      // if (returnCommandOutput) {
+      //   commandReturnValue = await commandPromise;
+      // } else if (waitForFinish) {
+      //   await commandPromise;
+      // }
 
       await this.io.writeResponse({
         error: null,

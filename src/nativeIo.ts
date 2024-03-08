@@ -10,7 +10,7 @@ import {
 import { userInfo } from "os";
 import { Io } from "./io";
 import { FileHandle, open, readFile, stat } from "fs/promises";
-import { VSCODE_COMMAND_TIMEOUT_MS } from "./constants";
+import { NEOVIM_COMMAND_TIMEOUT_MS } from "./constants";
 import { Request, Response } from "./types";
 
 class InboundSignal {
@@ -46,7 +46,7 @@ export class NativeIo implements Io {
   async initialize(): Promise<void> {
     const communicationDirPath = getCommunicationDirPath();
 
-    console.debug(`Creating communication dir ${communicationDirPath}`);
+    console.warn(`Creating communication dir ${communicationDirPath}`);
     mkdirSync(communicationDirPath, { recursive: true, mode: 0o770 });
 
     const stats = lstatSync(communicationDirPath);
@@ -93,7 +93,7 @@ export class NativeIo implements Io {
     const request = JSON.parse(await readFile(requestPath, "utf-8"));
 
     if (
-      Math.abs(stats.mtimeMs - new Date().getTime()) > VSCODE_COMMAND_TIMEOUT_MS
+      Math.abs(stats.mtimeMs - new Date().getTime()) > NEOVIM_COMMAND_TIMEOUT_MS
     ) {
       throw new Error(
         "Request file is older than timeout; refusing to execute command"

@@ -10,7 +10,7 @@
   },
   "version": "0.9.1",
   "engines": {
-    "vscode": "^1.53.0"
+    "node": ">=18.18.2"
   },
   "categories": [
     "Other"
@@ -18,7 +18,7 @@
   "activationEvents": [
     "*"
   ],
-  "main": "./out/extension.js",
+  "main": "./out/index.js",
   "extensionKind": [
     "ui"
   ],
@@ -118,7 +118,7 @@
   "devDependencies": {
     "@types/glob": "^7.1.3",
     "@types/mocha": "^8.0.4",
-    "@types/node": "^15.12.1",
+    "@types/node": "^18.19.22",
     "@types/rimraf": "^3.0.0",
     "@types/vscode": "^1.53.0",
     "@typescript-eslint/eslint-plugin": "^4.9.0",
@@ -131,6 +131,7 @@
   },
   "dependencies": {
     "minimatch": "^3.0.4",
+    "neovim": "^5.0.1",
     "rimraf": "^3.0.2"
   }
 }

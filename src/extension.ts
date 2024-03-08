@@ -1,29 +1,29 @@
-import * as vscode from "vscode";
+// import * as vscode from "vscode";
 
 import { NativeIo } from "./nativeIo";
 import CommandRunner from "./commandRunner";
 import { FocusedElementType } from "./types";
 
-export async function activate(context: vscode.ExtensionContext) {
+export async function activate(/* context: vscode.ExtensionContext */) {
   const io = new NativeIo();
   await io.initialize();
 
   const commandRunner = new CommandRunner(io);
   let focusedElementType: FocusedElementType | undefined;
 
-  context.subscriptions.push(
-    vscode.commands.registerCommand(
-      "command-server.runCommand",
-      (focusedElementType_?: FocusedElementType) => {
-        focusedElementType = focusedElementType_;
-        return commandRunner.runCommand();
-      }
-    ),
-    vscode.commands.registerCommand(
-      "command-server.getFocusedElementType",
-      () => focusedElementType ?? null
-    )
-  );
+  // context.subscriptions.push(
+  //   vscode.commands.registerCommand(
+  //     "command-server.runCommand",
+  //     (focusedElementType_?: FocusedElementType) => {
+  //       focusedElementType = focusedElementType_;
+  //       return commandRunner.runCommand();
+  //     }
+  //   ),
+  //   vscode.commands.registerCommand(
+  //     "command-server.getFocusedElementType",
+  //     () => focusedElementType ?? null
+  //   )
+  // );
 
   return {
     /**

@@ -8,7 +8,7 @@ export function getCommunicationDirPath() {
   // bother with a suffix
   const suffix = info.uid >= 0 ? `-${info.uid}` : "";
 
-  return join(tmpdir(), `vscode-command-server${suffix}`);
+  return join(tmpdir(), `neovim-command-server${suffix}`);
 }
 
 export function getSignalDirPath(): string {
