@@ -130,6 +130,7 @@
     "vscode-test": "^1.4.1"
   },
   "dependencies": {
+    "@cursorless/cursorless-neovim": "link:..\\cursorless_fork\\packages\\cursorless-neovim",
     "minimatch": "^3.0.4",
     "neovim": "^5.0.1",
     "rimraf": "^3.0.2"

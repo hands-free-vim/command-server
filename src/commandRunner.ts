@@ -4,6 +4,7 @@
 import { any } from "./regex";
 import { Request } from "./types";
 import { Io } from "./io";
+import { handleCommand } from "@cursorless/cursorless-neovim";
 
 export default class CommandRunner {
   private allowRegex!: RegExp;
@@ -84,6 +85,7 @@ export default class CommandRunner {
       }
 
       // const commandPromise = vscode.commands.executeCommand(commandId, ...args);
+      const commandPromise = handleCommand(commandId, ...args);
 
       let commandReturnValue = null;
 
