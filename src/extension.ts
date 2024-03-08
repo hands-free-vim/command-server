@@ -3,6 +3,7 @@
 import { NativeIo } from "./nativeIo";
 import CommandRunner from "./commandRunner";
 import { FocusedElementType } from "./types";
+import { injectCommandRunner } from "./singletons/commandRunner.singleton";
 
 export async function activate(/* context: vscode.ExtensionContext */) {
   const io = new NativeIo();
@@ -10,6 +11,7 @@ export async function activate(/* context: vscode.ExtensionContext */) {
 
   const commandRunner = new CommandRunner(io);
   let focusedElementType: FocusedElementType | undefined;
+  injectCommandRunner(commandRunner);
 
   // context.subscriptions.push(
   //   vscode.commands.registerCommand(

@@ -2,6 +2,7 @@
 // import { NeovimExtensionContext } from "./ide/neovim/NeovimExtensionContext";
 import { NvimPlugin } from "neovim";
 import { activate } from "./extension";
+import { commandRunner } from "./singletons/commandRunner.singleton";
 // import { injectContext } from "./singletons/context.singleton";
 
 /**
@@ -21,6 +22,12 @@ export default function entry(plugin: NvimPlugin) {
   plugin.registerFunction(
     "CommandServerLoadExtension",
     () => loadExtension(plugin),
+    { sync: false },
+  );
+  
+  plugin.registerFunction(
+    "CommandServerRunCommand",
+    () => commandRunner().runCommand(),
     { sync: false },
   );
 }
