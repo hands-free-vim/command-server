@@ -1,4 +1,4 @@
-import { Minimatch } from "minimatch";
+// import { Minimatch } from "minimatch";
 import * as vscode from "vscode";
 
 import { any } from "./regex";
@@ -19,26 +19,26 @@ export default class CommandRunner {
   }
 
   reloadConfiguration() {
-    const allowList = vscode.workspace
-      .getConfiguration("command-server")
-      .get<string[]>("allowList")!;
+    // const allowList = vscode.workspace
+    //   .getConfiguration("command-server")
+    //   .get<string[]>("allowList")!;
 
-    this.allowRegex = any(
-      ...allowList.map((glob) => new Minimatch(glob).makeRe())
-    );
+    // this.allowRegex = any(
+    //   ...allowList.map((glob) => new Minimatch(glob).makeRe())
+    // );
 
-    const denyList = vscode.workspace
-      .getConfiguration("command-server")
-      .get<string[]>("denyList")!;
+    // const denyList = vscode.workspace
+    //   .getConfiguration("command-server")
+    //   .get<string[]>("denyList")!;
 
-    this.denyRegex =
-      denyList.length === 0
-        ? null
-        : any(...denyList.map((glob) => new Minimatch(glob).makeRe()));
+    // this.denyRegex =
+    //   denyList.length === 0
+    //     ? null
+    //     : any(...denyList.map((glob) => new Minimatch(glob).makeRe()));
 
-    this.backgroundWindowProtection = vscode.workspace
-      .getConfiguration("command-server")
-      .get<boolean>("backgroundWindowProtection")!;
+    // this.backgroundWindowProtection = vscode.workspace
+    //   .getConfiguration("command-server")
+    //   .get<boolean>("backgroundWindowProtection")!;
   }
 
   /**
