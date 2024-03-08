@@ -6,7 +6,7 @@ use with voice-control systems such as [Talon](https://talonvoice.com/).
 ## Features
 
 On startup, creates a directory in the default tmp directory, called
-`vscode-command-server-${userName}`, where `${userName}` is the username. Then
+`vscode-command-server-${userName}`, where `${userName}` is the username (`vscode-command-server` on Windows). Then
 waits for the `command-server.runCommand` command to be issued, which will
 trigger the command server to read the `request.json` file in the communication
 directory, execute the command requested there, and write the response to
@@ -36,7 +36,7 @@ pass `waitForFinish=true`.
 If you'd like the server to wait for the command to finish and then respond
 with the command return value encoded as JSON, pass `expectResponse=true`.
 
-### Python example
+### Python client example
 
 Have a look at
 [talon-vscode-command-client](https://github.com/pokey/talon-vscode-command-client).
