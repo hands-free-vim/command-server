@@ -84,16 +84,15 @@ export default class CommandRunner {
         throw new Error("Command in denyList");
       }
 
-      // const commandPromise = vscode.commands.executeCommand(commandId, ...args);
       const commandPromise = handleCommand(commandId, ...args);
 
       let commandReturnValue = null;
 
-      // if (returnCommandOutput) {
-      //   commandReturnValue = await commandPromise;
-      // } else if (waitForFinish) {
-      //   await commandPromise;
-      // }
+      if (returnCommandOutput) {
+        commandReturnValue = await commandPromise;
+      } else if (waitForFinish) {
+        await commandPromise;
+      }
 
       await this.io.writeResponse({
         error: null,
