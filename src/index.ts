@@ -49,7 +49,7 @@ function loadExtension(plugin: NvimPlugin) {
   const currentDate: Date = new Date();
   const currentDateStr: string = currentDate.toLocaleString();
 
-  console.warn("loadExtension(): " + currentDateStr);
+  console.warn("loadExtension(command-server): " + currentDateStr);
   // plugin.nvim.setLine(currentDateStr);
 
   // const extensionContext = new NeovimExtensionContext(plugin);
