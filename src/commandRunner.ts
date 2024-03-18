@@ -64,7 +64,7 @@ export default class CommandRunner {
     const { commandId, args, uuid, returnCommandOutput, waitForFinish } =
       request;
 
-    const warnings = [];
+    const warnings: string[] = [];
 
     try {
       // if (!vscode.window.state.focused) {
@@ -74,7 +74,7 @@ export default class CommandRunner {
       //     warnings.push("This editor is not active");
       //   }
       // }
-      warnings.push("Neovim not implemented yet");
+      // warnings.push("Neovim not implemented yet");
 
       if (!commandId.match(this.allowRegex)) {
         throw new Error("Command not in allowList");
