@@ -50,6 +50,7 @@ export default class CommandRunner {
    * types.
    */
   async runCommand() {
+    console.warn("------------------------------------------------------------------------------");
     await this.io.prepareResponse();
 
     let request: Request;
