@@ -5,15 +5,21 @@ import { activate } from "./extension";
 import { commandRunner } from "./singletons/commandRunner.singleton";
 // import { injectContext } from "./singletons/context.singleton";
 
+// const random = Math.random();
+// console.warn(`index.ts: random=${random}`);
+// console.warn(`index.ts: __filename=${__filename}`);
+
 /**
  * Extension entrypoint called by node-client on command-server startup.
  * - Register the functions that are exposed to neovim.
  *   Note that these function need to start with a capital letter to be callable from neovim.
  */
 export default function entry(plugin: NvimPlugin) {
-  // Set your plugin to dev mode, which will cause the module to be reloaded on each invocation
-  // plugin.setOptions({ dev: false });
-  plugin.setOptions({ dev: true });
+  // Contrary to cursorless-neovim, setting "dev" to "false" is not really relevant
+  // because it will only apply to the index.js file, because the files are not rolled up into a single file
+  // so the other files will be imported at run time and will not be reloaded. 
+  // That being said it doesn't hurt to set it to "false" anyway
+  plugin.setOptions({ dev: false });
 
   plugin.registerFunction("CommandServerTest", () => test(plugin), {
     sync: false,
@@ -27,7 +33,7 @@ export default function entry(plugin: NvimPlugin) {
   
   plugin.registerFunction(
     "CommandServerRunCommand",
-    () => commandRunner().runCommand(),
+    () => runCommand(),
     { sync: false },
   );
 }
@@ -47,6 +53,18 @@ function test(plugin: NvimPlugin) {
  */
 async function loadExtension(plugin: NvimPlugin) {
   console.warn("loadExtension(command-server): start");
+  // console.warn(
+  //   `index.ts: loadExtension(): random=${random}`,
+  // );
   await activate();
   console.warn("loadExtension(command-server): done");
+}
+
+async function runCommand() {
+  console.warn("runCommand(command-server): start");
+  // console.warn(
+  //   `index.ts: runCommand(): random=${random}`,
+  // );
+  commandRunner().runCommand();
+  console.warn("runCommand(command-server): done");
 }
