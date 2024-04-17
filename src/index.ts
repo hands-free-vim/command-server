@@ -21,7 +21,7 @@ export default function entry(plugin: NvimPlugin) {
 
   plugin.registerFunction(
     "CommandServerLoadExtension",
-    () => loadExtension(plugin),
+    async () => await loadExtension(plugin),
     { sync: false },
   );
   
@@ -45,14 +45,8 @@ function test(plugin: NvimPlugin) {
 /**
  * Load the command-server.
  */
-function loadExtension(plugin: NvimPlugin) {
-  const currentDate: Date = new Date();
-  const currentDateStr: string = currentDate.toLocaleString();
-
-  console.warn("loadExtension(command-server): " + currentDateStr);
-  // plugin.nvim.setLine(currentDateStr);
-
-  // const extensionContext = new NeovimExtensionContext(plugin);
-  // injectContext(extensionContext);
-  activate(/* extensionContext */);
+async function loadExtension(plugin: NvimPlugin) {
+  console.warn("loadExtension(command-server): start");
+  await activate();
+  console.warn("loadExtension(command-server): done");
 }
