@@ -4,7 +4,7 @@
 import { any } from "./regex";
 import { Request } from "./types";
 import { Io } from "./io";
-import { handleCommand } from "@cursorless/cursorless-neovim";
+// import { handleCommand } from "@cursorless/cursorless-neovim";
 
 export default class CommandRunner {
   private allowRegex!: RegExp;
@@ -89,7 +89,10 @@ export default class CommandRunner {
       // this is if we want the command-server to support executing lua functions/commands
       // based on command ids for talon-vim.
       // Note: this might not be useful because we can do it directly with neovim RPC
-      const commandPromise = handleCommand(commandId, ...args);
+      // const commandPromise = handleCommand(commandId, ...args);
+      // const commandPromise = vscode.commands.executeCommand(commandId, ...args);
+      const registry = require("@cursorless/neovim-registry").getNeovimRegistry();
+      const commandPromise = registry.executeCommand(commandId, ...args);
 
       let commandReturnValue = null;
 
