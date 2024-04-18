@@ -4,6 +4,7 @@
 import { any } from "./regex";
 import { Request } from "./types";
 import { Io } from "./io";
+import { neovimRegistry } from "@cursorless/neovim-registry";
 // import { handleCommand } from "@cursorless/cursorless-neovim";
 
 export default class CommandRunner {
@@ -91,8 +92,7 @@ export default class CommandRunner {
       // Note: this might not be useful because we can do it directly with neovim RPC
       // const commandPromise = handleCommand(commandId, ...args);
       // const commandPromise = vscode.commands.executeCommand(commandId, ...args);
-      const registry = require("@cursorless/neovim-registry").getNeovimRegistry();
-      const commandPromise = registry.executeCommand(commandId, ...args);
+      const commandPromise = neovimRegistry.executeCommand(commandId, ...args);
 
       let commandReturnValue = null;
 
