@@ -1,7 +1,38 @@
+<!-- vim-markdown-toc GFM -->
+
+- [command-server README](#command-server-readme)
+  - [Build](#build)
+  - [Features](#features)
+    - [Python client example](#python-client-example)
+  - [Commands](#commands)
+  - [Keyboard shortcuts](#keyboard-shortcuts)
+  - [Configuration](#configuration)
+    - [`command-server.allowList`](#command-serverallowlist)
+    - [`command-server.denyList`](#command-serverdenylist)
+  - [Troubleshooting](#troubleshooting)
+  - [Known issues](#known-issues)
+  - [Change Log](#change-log)
+
+<!-- vim-markdown-toc -->
+
 # command-server README
 
 Adds support for running arbitrary commands via file-based RPC. Designed for
 use with voice-control systems such as [Talon](https://talonvoice.com/).
+
+## Build
+
+To build it:
+
+```
+pnpm compile
+```
+
+To cleanup build:
+
+```
+pnpm clean
+```
 
 ## Features
 
