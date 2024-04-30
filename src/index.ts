@@ -15,10 +15,11 @@ import { commandRunner } from "./singletons/commandRunner.singleton";
  *   Note that these function need to start with a capital letter to be callable from neovim.
  */
 export default function entry(plugin: NvimPlugin) {
-  // Contrary to cursorless-neovim, setting "dev" to "false" is not really relevant
-  // because it will only apply to the index.js file, because the files are not rolled up into a single file
-  // so the other files will be imported at run time and will not be reloaded. 
-  // That being said it doesn't hurt to set it to "false" anyway
+  // We make sure the command-server extension is only loaded once,
+  // as otherwise we will run our first copy when loading the extension
+  // and a different new copy for running each command
+  // NOTE: this is the case because all the files are rolled up into a single index.cjs file
+  // and node-client would reload that index.cjs file if "dev" was set to "true"
   plugin.setOptions({ dev: false });
 
   plugin.registerFunction("CommandServerTest", () => test(plugin), {
