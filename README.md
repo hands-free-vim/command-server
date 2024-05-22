@@ -22,11 +22,33 @@ use with voice-control systems such as [Talon](https://talonvoice.com/).
 
 ## Build
 
+Make sure the path to your clone of the cursorless mono repo is valid in `package.json`:
+
+```json
+  "dependencies": {
+    "@cursorless/neovim-registry": "link:..\\cursorless\\packages\\neovim-registry",
+    ...
+```
+
 To build it:
 
 ```
 pnpm compile
 ```
+
+Copy `package.json` and `out/index.cjs` into `cursorless\cursorless.nvim\node\command-server`
+
+```
+command-server
+│   package.json
+│
+└───out
+        index.cjs
+```
+
+Build the cursorless neovim extension and it will include the command-server.
+
+## Cleanup
 
 To cleanup build:
 

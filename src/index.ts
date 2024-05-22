@@ -1,13 +1,6 @@
-// import { createCursorlessEngine } from "@cursorless/cursorless-engine";
-// import { NeovimExtensionContext } from "./ide/neovim/NeovimExtensionContext";
 import { NvimPlugin } from "neovim";
 import { activate } from "./extension";
 import { commandRunner } from "./singletons/commandRunner.singleton";
-// import { injectContext } from "./singletons/context.singleton";
-
-// const random = Math.random();
-// console.warn(`index.ts: random=${random}`);
-// console.warn(`index.ts: __filename=${__filename}`);
 
 /**
  * Extension entrypoint called by node-client on command-server startup.
@@ -21,10 +14,6 @@ export default function entry(plugin: NvimPlugin) {
   // NOTE: this is the case because all the files are rolled up into a single index.cjs file
   // and node-client would reload that index.cjs file if "dev" was set to "true"
   plugin.setOptions({ dev: false });
-
-  plugin.registerFunction("CommandServerTest", () => test(plugin), {
-    sync: false,
-  });
 
   plugin.registerFunction(
     "CommandServerLoadExtension",
@@ -40,32 +29,16 @@ export default function entry(plugin: NvimPlugin) {
 }
 
 /**
- * Test that command-server is loaded
- */
-function test(plugin: NvimPlugin) {
-  const currentDate: Date = new Date();
-  const currentDateStr: string = currentDate.toLocaleString();
-
-  console.warn("test(): " + currentDateStr);
-}
-
-/**
  * Load the command-server.
  */
 async function loadExtension(plugin: NvimPlugin) {
-  console.warn("loadExtension(command-server): start");
-  // console.warn(
-  //   `index.ts: loadExtension(): random=${random}`,
-  // );
+  console.log("loadExtension(command-server): start");
   await activate();
-  console.warn("loadExtension(command-server): done");
+  console.log("loadExtension(command-server): done");
 }
 
 async function runCommand() {
-  console.warn("runCommand(command-server): start");
-  // console.warn(
-  //   `index.ts: runCommand(): random=${random}`,
-  // );
+  console.log("runCommand(command-server): start");
   commandRunner().runCommand();
-  console.warn("runCommand(command-server): done");
+  console.log("runCommand(command-server): done");
 }

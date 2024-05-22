@@ -46,7 +46,7 @@ export class NativeIo implements Io {
   async initialize(): Promise<void> {
     const communicationDirPath = getCommunicationDirPath();
 
-    console.warn(`Creating communication dir ${communicationDirPath}`);
+    console.log(`Creating communication dir ${communicationDirPath}`);
     mkdirSync(communicationDirPath, { recursive: true, mode: 0o770 });
 
     const stats = lstatSync(communicationDirPath);
