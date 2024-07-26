@@ -2,6 +2,9 @@
 
 - [command-server README](#command-server-readme)
   - [Build](#build)
+    - [Windows](#windows)
+    - [Mac (Homewbrew)](#mac-homewbrew)
+  - [Cleanup](#cleanup)
   - [Features](#features)
     - [Python client example](#python-client-example)
   - [Commands](#commands)
@@ -21,6 +24,8 @@ Adds support for running arbitrary commands via file-based RPC. Designed for
 use with voice-control systems such as [Talon](https://talonvoice.com/).
 
 ## Build
+
+### Windows
 
 Make sure the path to your clone of the cursorless mono repo is valid in `package.json`:
 
@@ -48,11 +53,40 @@ command-server
 
 Build the cursorless neovim extension and it will include the command-server.
 
+### Mac (Homewbrew)
+
+This assumes you've cloned the cursorless dev repo into the parent folder at `cursorless`.
+
+```bash
+brew install corepack
+brew install esbuild
+```
+
+Link neovim-registry package to your local cursorless repo:
+
+```bash
+pnpm link ../cursorless/packages/neovim-registry
+```
+
+Build it
+
+```bash
+pnpm compile
+```
+
+Copy build files into cursorless.nvim plugin:
+
+```bash
+cp package.json ../cursorless/cursorless.nvim/node/command-server
+cp out/index.cjs ../cursorless/cursorless.nvim/node/command-server/index/
+```
+
+
 ## Cleanup
 
 To cleanup build:
 
-```
+```bash
 pnpm clean
 ```
 
